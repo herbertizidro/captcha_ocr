@@ -6,6 +6,7 @@ from PIL import Image
 from io import BytesIO
 from selenium import webdriver
 
+#autor: Herbert Izidro
 
 #acessa o site, localiza o captcha e printa a tela
 browser = webdriver.Chrome(r"C:\Users\<USER>\Downloads\chromedriver_win32\chromedriver.exe")
