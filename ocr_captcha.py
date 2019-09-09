@@ -52,7 +52,7 @@ cv2.imwrite("screenshot.png", img_limiar)
 #OCR
 pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
 txt_captcha = pytesseract.image_to_string("screenshot.png", lang = "<fonteA>+<fonteB>")
-#txt_captcha = pytesseract.image_to_string("screenshot.png", config="--oem 3 --psm 11 tessedit_char_whitelist=ABCDEFGHIJLMNOPQRSTUVXZYW0123456789")
+#txt_captcha = pytesseract.image_to_string("screenshot.png", config="--oem 3 --psm 11 tessedit_char_whitelist= ")
 
 
 #input captcha
