@@ -78,7 +78,7 @@ for i in aux:
 
 #input captcha
 captcha_txt_input = browser.find_element_by_xpath('<XPATH>')
-captcha_txt_input.send_keys(t.upper())
+captcha_txt_input.send_keys(aux.upper())
 
 browser.quit()
 
