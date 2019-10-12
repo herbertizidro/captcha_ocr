@@ -69,12 +69,12 @@ for text in response.text_annotations:
 
 print(aux)
 aux = aux[0]
+#aux = sorted(set(aux))
 aux = str(aux)
 ruido = ["\n", ".", " "] #caracteres indesejados 
 for i in aux:
     if i in ruido:
         aux = aux.replace(i, "")
-
 
 #input captcha
 captcha_txt_input = browser.find_element_by_xpath('<XPATH>')

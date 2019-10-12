@@ -54,6 +54,7 @@ pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\
 txt_captcha = pytesseract.image_to_string("screenshot.png", lang = "<fonteA>+<fonteB>")
 #txt_captcha = pytesseract.image_to_string("screenshot.png", config="--oem 3 --psm 11 tessedit_char_whitelist= ")
 
+#txt_captcha = sorted(set(txt_captcha))
 
 #input captcha
 captcha_txt_input = browser.find_element_by_xpath('XPATH')
