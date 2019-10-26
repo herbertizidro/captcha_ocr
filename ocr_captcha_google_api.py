@@ -71,9 +71,9 @@ print(aux)
 aux = aux[0]
 #aux = sorted(set(aux))
 aux = str(aux)
-ruido = ["\n", ".", " "] #caracteres indesejados 
+trash = ["\n", ".", " "] #caracteres que poluem o resultado
 for i in aux:
-    if i in ruido:
+    if i in trash:
         aux = aux.replace(i, "")
 
 #input captcha
