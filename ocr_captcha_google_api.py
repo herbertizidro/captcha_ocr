@@ -81,13 +81,3 @@ captcha_txt_input = browser.find_element_by_xpath('<XPATH>')
 captcha_txt_input.send_keys(aux.upper())
 
 browser.quit()
-
-
-#a API Vision do Google até o momento foi a melhor opção para OCR
-#um ponto a ser melhorado é a ordem das letras/números
-#eu usei um captcha que mantinha os caracteres sempre desalinhados
-#uns mais acima na imagem e outros mais abaixo
-#observei que a API considera essas posições para definir a ordem
-#dos caracteres na resposta, ex: se tenho 73A, o 7 no topo
-#da imagem, o 3 na parte inferior e o A no meio, a resposta será 7A3
-#o próximo passo é corrigir esse detalhe
