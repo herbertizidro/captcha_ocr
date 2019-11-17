@@ -99,7 +99,7 @@ while True:
 
 
     try:
-        mensagem_erro = browser.find_element_by_class_name("<CLASS>").text
+        mensagem_erro_modal = browser.find_element_by_class_name("<CLASS>").text
         browser.quit()
     except:
         #
