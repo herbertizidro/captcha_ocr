@@ -17,11 +17,10 @@ while True:
     browser.get("<SITE>")
     browser.maximize_window()
 
-    cpf = "<CPF>"
 
     #login
     cpf_input = browser.find_element_by_xpath('<XPATH>')
-    for i in cpf:
+    for i in "<CPF>":
         time.sleep(1) #evitar problemas com - e . adicionados automaticamente no input
         cpf_input.send_keys(i)
 
@@ -80,12 +79,9 @@ while True:
     #VISION API
 
 
-    print(aux)
-    aux = aux[0]
-    aux = str(aux)
-    ruido = ["\n", ".", " "] #caracteres indesejados 
+    aux = str(aux[0])
     for i in aux:
-        if i in ruido:
+        if i in ["\n", ".", " "]: #caracteres indesejados 
             aux = aux.replace(i, "")
 
 
