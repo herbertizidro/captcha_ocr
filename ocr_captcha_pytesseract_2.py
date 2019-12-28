@@ -10,6 +10,7 @@ from selenium import webdriver
 
 
 
+
 while True:
     #acessa o site, localiza o captcha e printa a tela
     browser = webdriver.Chrome(r"C:\Users\<-USER->\Downloads\chromedriver_win32\chromedriver.exe")
@@ -56,12 +57,12 @@ while True:
 
     #binariza
     img = cv2.imread("screenshot.png", 0)
-    limiar, img_limiar = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-    img_limiar = cv2.bilateralFilter(img_limiar, 11, 17, 17)
-    cv2.imwrite("screenshot.png", img_limiar)
+    _, thresh = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+    thresh = cv2.bilateralFilter(thresh, 11, 17, 17)
+    cv2.imwrite("screenshot.png", thresh)
 
 
-    #encontra os contornos
+    #tratamento para encontrar os contornos
     img = cv2.imread("screenshot.png")
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _,thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV) #binariza inv
