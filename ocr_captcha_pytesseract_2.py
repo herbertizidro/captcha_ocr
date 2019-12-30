@@ -10,7 +10,6 @@ from selenium import webdriver
 
 
 
-
 while True:
     #acessa o site, localiza o captcha e printa a tela
     browser = webdriver.Chrome(r"C:\Users\<-USER->\Downloads\chromedriver_win32\chromedriver.exe")
@@ -71,7 +70,9 @@ while True:
     contornos, h = cv2.findContours(dilatacao, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
 
-    #organiza as coordenadas
+    #organiza as coordenadas de acordo com a posição de cada caracter no eixo X
+    #ou seja, não importa a posição do caracter no eixo Y, o que estiver
+    #mais à esquerda será o primeiro
     coordenadas = []
     posicaoX = []  #array para o X de cada coordenada
     for c in contornos:
@@ -87,10 +88,10 @@ while True:
                 coordenadas_ordenadas.append(coor)
 
 
-    #recorta as letras e salva na pasta "letras
+    #recorta as letras e salva na pasta "letras"
     if os.path.isdir("./letras") == False:
         os.mkdir("./letras")
-    if len(coordenadas_ordenadas) == 3:
+    if len(coordenadas_ordenadas) == 3: #nesse caso serão sempre 3 caracteres
         aux = 0   
         for coor in coordenadas_ordenadas:
             aux += 1
@@ -108,7 +109,7 @@ while True:
     for letra in letras_dir:
         letra = os.getcwd() + "\\letras\\" + letra
         pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe"
-        ocr = pytesseract.image_to_string(Image.open(letra), config="--psm 10")
+        ocr = pytesseract.image_to_string(Image.open(letra), config = "--psm 10")
         txt_captcha.append(ocr)
 
 
@@ -140,3 +141,22 @@ while True:
         break
     
 
+
+
+'''
+Page segmentation modes(psm):
+  0    Orientation and script detection (OSD) only.
+  1    Automatic page segmentation with OSD.
+  2    Automatic page segmentation, but no OSD, or OCR.
+  3    Fully automatic page segmentation, but no OSD. (Default)
+  4    Assume a single column of text of variable sizes.
+  5    Assume a single uniform block of vertically aligned text.
+  6    Assume a single uniform block of text.
+  7    Treat the image as a single text line.
+  8    Treat the image as a single word.
+  9    Treat the image as a single word in a circle.
+ 10    Treat the image as a single character.
+ 11    Sparse text. Find as much text as possible in no particular order.
+ 12    Sparse text with OSD.
+ 13    Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific.
+'''
