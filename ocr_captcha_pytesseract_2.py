@@ -9,7 +9,6 @@ from io import BytesIO
 from selenium import webdriver
 
 
-
 while True:
     #acessa o site, localiza o captcha e printa a tela
     browser = webdriver.Chrome(r"C:\Users\<-USER->\Downloads\chromedriver_win32\chromedriver.exe")
@@ -64,7 +63,7 @@ while True:
     #tratamento para encontrar os contornos
     img = cv2.imread("screenshot.png")
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _,thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV) #binariza inv
+    _,thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV) #o fundo deve ser preto e o objeto branco
     kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3)) #https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
     dilatacao = cv2.dilate(thresh, kernel, iterations = 13)
     contornos, h = cv2.findContours(dilatacao, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
@@ -114,10 +113,8 @@ while True:
 
 
     #limpa o resultado
-    txt_captcha = str(txt_captcha)
-    for i in txt_captcha:
-        if i in ["\n", ".", " ", "/", ",", "[", "]", '"', "'"]:
-            txt_captcha = txt_captcha.replace(i, "")
+    txt_captcha = [i for i in txt_captcha if i.isalnum()] #só o que for letra ou número
+    txt_captcha = str(txt_captcha).strip("[]").replace(",", "").replace("'", "").replace(" ", "")
     
 
     #input captcha
