@@ -1,2 +1,2 @@
 # captcha_ocr
- métodos para contornar um captcha simples
+ script principal: ocr_captcha_pytesseract_2.py
