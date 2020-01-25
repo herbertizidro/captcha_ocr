@@ -78,16 +78,15 @@ while True:
         aux.append(text.description)
     #VISION API
 
-
-    aux = str(aux[0])
-    for i in aux:
-        if i in ["\n", ".", " "]: #caracteres indesejados 
-            aux = aux.replace(i, "")
+            
+    #limpa o resultado
+    txt_captcha = [i for i in aux if i.isalnum()] #só o que for letra ou número
+    txt_captcha = str(txt_captcha).strip("[]").replace(",", "").replace("'", "").replace(" ", "")
 
 
     #input captcha
     captcha_txt_input = browser.find_element_by_xpath('<XPATH>')
-    captcha_txt_input.send_keys(aux.upper())
+    captcha_txt_input.send_keys(txt_captcha.upper())
 
     #clicar em 'entrar'
     browser.find_element_by_xpath('<XPATH>').click()
