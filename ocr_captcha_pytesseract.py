@@ -69,19 +69,19 @@ while True:
     contornos, h = cv2.findContours(dilatacao, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
 
-    #organiza as coordenadas de acordo com a posição de cada caracter no eixo X
-    #ou seja, não importa a posição do caracter no eixo Y, o que estiver
+    #organiza as coordenadas de acordo com a posição de cada caractere no eixo X
+    #ou seja, não importa a posição do caractere no eixo Y, o que estiver
     #mais à esquerda será o primeiro
     coordenadas = []
-    posicaoX = []  #array para o X de cada coordenada
+    posicao_x = []  #array para o X de cada coordenada
     for c in contornos:
         x, y, w, h = cv2.boundingRect(c)
         coordenadas.append([x, y, w, h])
-        posicaoX.append(x)
-    posicaoX = sorted(posicaoX, key=int)  #ordena o array
-    #ordena as coordenadas de acordo com a ordem do array "posicaoX"
+        posicao_x.append(x)
+    posicao_x = sorted(posicao_x, key=int)  #ordena o array
+    #ordena as coordenadas de acordo com a ordem do array "posicao_x"
     coordenadas_ordenadas = []
-    for pos in posicaoX:
+    for pos in posicao_x:
         for coor in coordenadas:
             if pos == coor[0]:
                 coordenadas_ordenadas.append(coor)
