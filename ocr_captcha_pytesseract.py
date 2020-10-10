@@ -10,7 +10,7 @@ from selenium import webdriver
 
 
 while True:
-    #acessa o site, localiza o captcha e printa a tela
+    #acessa o site e maximiza a tela
     browser = webdriver.Chrome(r"C:\Users\<-USER->\Downloads\chromedriver_win32\chromedriver.exe")
     browser.get("<-SITE->")
     browser.maximize_window()
